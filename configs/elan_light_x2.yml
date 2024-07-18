@@ -13,7 +13,7 @@ pretrain:
 
 ## parameters for model training
 patch_size: 256
-batch_size: 32
+batch_size: 48
 data_repeat: 80
 data_augment: 1
 
