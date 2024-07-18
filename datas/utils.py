@@ -1,6 +1,7 @@
 import os
 from datas.benchmark import Benchmark
 from datas.div2k import DIV2K
+from datas.clothes import CLOTHES
 from torch.utils.data import DataLoader
 
 
@@ -17,6 +18,20 @@ def create_datasets(args):
         repeat=args.data_repeat, 
     )
     train_dataloader = DataLoader(dataset=div2k, num_workers=args.threads, batch_size=args.batch_size, shuffle=True, pin_memory=True, drop_last=True)
+
+    # clothes dataset을 이용하고 싶다면 아래 코드를 주석 해제하고 9~20행을 주석 처리 부탁드립니다.
+    # clothes = CLOTHES(
+    #     os.path.join(args.data_path, 'CLOTHES_SR/clothes'), 
+    #     os.path.join(args.data_path, 'CLOTHES_SR/clothes_X2'), 
+    #     os.path.join(args.data_path, 'clothes_cache'),
+    #     train=True, 
+    #     augment=args.data_augment, 
+    #     scale=args.scale, 
+    #     colors=args.colors, 
+    #     patch_size=args.patch_size, 
+    #     repeat=args.data_repeat, 
+    # )
+    # train_dataloader = DataLoader(dataset=clothes, num_workers=args.threads, batch_size=args.batch_size, shuffle=True, pin_memory=True, drop_last=True)
     
     valid_dataloaders = []
     if 'Set5' in args.eval_sets:
